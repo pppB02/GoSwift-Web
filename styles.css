@@ -29,6 +29,7 @@ body{
     font-family: Archivo-Bold;
     margin: 0;
     padding: 0;
+    position: relative;
 }
 
 h1{
@@ -55,9 +56,10 @@ span{
     color: var(--coloraccent);
 }
 
-.off-screen-menu {
+.off-screen-menu{
     background-color:  #15181c;
-    height: 100vh;
+    color: var(--colorsecondary);
+    height: 100%;
     width: 100%;
     max-width: 450px;
     position: fixed;
@@ -65,31 +67,121 @@ span{
     left: -450px;
     display: flex;
     flex-direction: column;
-    align-items: center;    
-    justify-content: center;
-    text-align: center;
+    align-items: flex-start;    
+    justify-content: flex-start;
     font-size: 3rem;
     transition: .3s ease;
 }
-.off-screen-menu.active {
+.off-screen-menu.active{
     left: 0;
 }
 
+html.active{
+    overflow-y: hidden; 
+}
+
+body.active{
+    overflow-y: hidden; 
+}
+
+.off-screen-menu ul{
+    list-style: none;
+    padding-top: 50px;
+}
+
+.off-screen-menu li{
+    padding-top: 30px;
+}
+
+.off-screen-menu a{
+    text-decoration: none;
+    font-size: 3rem;
+}
+
+.off-screen-menu a:visited{
+    color: var(--colorsecondary);
+}
+
+.off-screen-buttons{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 20px;
+    font-size: 1rem;
+    z-index: 1;
+}
+
+.off-screen-container{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 50%;
+    gap: 1rem;
+}
+
+.off-screen-buttons input{
+   width: 110px;
+   height: 40px;
+   font-size: var(--h2);
+   font-weight: 550;
+   border-radius: 25px;
+   cursor: pointer;
+   background-color: var(--coloraccent);
+   border: 3px solid var(--coloraccent);
+   color: var(--colorsecondary);
+   margin-bottom: 10px;
+}
+
+.off-screen-buttons input[value="Login"]{
+    background-color: #15181c;
+    border: 3px solid var(--coloraccent);
+    color: var(--coloraccent);
+    transition: .3s;
+}
+
+.off-screen-buttons input[value="Login"]:hover{
+    background-color: #576fcf40;
+    transition: .3s;
+}
+
+#signUp{
+    transition: .3s;
+}
+
+#signUp:hover{
+    color: #b2c2ff;
+    transition: .3s;
+}
+
+
+
+
+
+
+
+
+
+
+
 /* nav */
-nav {
+nav{
     padding: 1rem;
     display: flex;
     justify-content: space-between
 }
 
 /* ham menu */
-.ham-menu {
+.ham-menu{
     height: 50px;
     width: 40px;
     margin-right: auto;
     position: relative;
 }
-.ham-menu span {
+.ham-menu span{
     height: 5px;
     width: 100%;
     background-color: var(--colorprimary);
@@ -100,26 +192,29 @@ nav {
     transform: translate(-50%, -50%);
     transition: .3s ease;
 }
-.ham-menu span:nth-child(1) {
+.ham-menu span:nth-child(1){
     top: 25%;
 }
-.ham-menu span:nth-child(3) {
+.ham-menu span:nth-child(3){
     top: 75%;
 }
-.ham-menu.active span {
-    background-color: var(--colorsecondary);
-}
-.ham-menu.active span:nth-child(1) {
+
+.ham-menu.active span:nth-child(1){
     top: 50%;
     transform: translate(-50%, -50%) rotate(45deg);
 }
-.ham-menu.active span:nth-child(2) {
+.ham-menu.active span:nth-child(2){
     opacity: 0;
 }
-.ham-menu.active span:nth-child(3) {
+.ham-menu.active span:nth-child(3){
     top: 50%;
     transform: translate(-50%, -50%) rotate(-45deg);
 }
+
+.ham-menu.active span {
+    background-color: var(--colorsecondary);
+}
+
 
 @media (max-width:696px){
     .hidden{
@@ -164,6 +259,8 @@ nav {
 /*Buttons*/
 
 .navbar-buttons{
+    display: flex;
+    gap: 20px;
     padding-top: 2px;
 }
 
@@ -177,13 +274,27 @@ nav {
    background-color: var(--coloraccent);
    border: 3px solid var(--coloraccent);
    color: var(--colorsecondary);
-   
 }
 
 .navbar-buttons input[value="Login"]{
     background-color: var(--colorsecondary);
     border: 3px solid var(--coloraccent);
     color: var(--coloraccent);
+    transition: .3s;
+}
+
+.navbar-buttons input[value="Login"]:hover{
+    background-color: #576fcf40;
+    transition: .3s;
+}
+
+#signUp{
+    transition: .3s;
+}
+
+#signUp:hover{
+    color: #b2c2ff;
+    transition: .3s;
 }
 
 /*Main img && text*/
@@ -216,6 +327,12 @@ nav {
     padding: 12px 20px;
     font-size: 1.2rem;
     cursor: pointer;
+    transition: var(--transition);
+}
+
+.main-button input:hover{
+    scale: 1.05;
+    transition: var(--transition);
 }
 
 .mainText{
@@ -249,7 +366,7 @@ nav {
     width: 100%;
     display: grid;
     grid-auto-columns: 43vw;
-    grid-auto-rows: 30vh;
+    grid-auto-rows: 40vh;
     gap: 100px;
     grid-template-areas: "box-1 box-2"
                          "box-4 box-3"
@@ -304,15 +421,15 @@ nav {
 @media (max-width:1000px){
     .grid-conatiner{
         grid-auto-columns: 100%;
-        grid-auto-rows: 30vh;
-        gap: 25px;
-        grid-template-areas: "box-1"
-                             "box-2"
-                             "box-3"
+        grid-auto-rows: 30vw;
+        gap: 10vw;
+        grid-template-areas: "box-2"
+                             "box-1"
                              "box-4"
-                             "box-5"
-                             "box-6";
-    }  
+                             "box-3"
+                             "box-6"
+                             "box-5";
+    }
 
     .grid-text-container{
         display: flex;
@@ -352,6 +469,20 @@ nav {
 
 }
 
+@media (max-width:496px){
+    .grid-conatiner{
+        grid-auto-columns: 100%;
+        grid-auto-rows: 30vw;
+        gap: 20vh;
+        grid-template-areas: "box-1"
+                             "box-2"
+                             "box-3"
+                             "box-4"
+                             "box-5"
+                             "box-6";
+    }
+}
+
 
 /* Plans */
 
@@ -366,6 +497,17 @@ nav {
     margin: 0 8px;
 }
 
+.plan-card-container input[type="button"]{
+    transition: var(--transition);
+    font-size: 1.4rem;
+    font-family: Archivo-Medium;
+}
+
+.plan-card-container input[type="button"]:hover{
+    scale: 1.05;
+    transition: var(--transition);
+}
+
 @media (max-width:1213px){
     .plan-card-container{
         display: grid;
@@ -373,8 +515,9 @@ nav {
     }
 }
 
-
 .card{
+    position: relative;
+    z-index: -1;
     background-color: var(--colorsecondary);
     box-shadow: var(--shadow);
     border-radius: 10px;
@@ -398,6 +541,10 @@ nav {
     height: 78%;
 }
 
+#Basic p{
+    height: 90px;
+}
+
 .glass-standard{
     height: 48%;
 }
@@ -419,6 +566,13 @@ nav {
     padding: 15px 40px 15px;
     margin: 2vh 0;
 }
+
+@media (max-height:496px){
+    .card input{
+        margin: 4vh 0;
+    }
+}
+
 
 .mid-card input{
     background-color: var(--coloraccent);
