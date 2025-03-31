@@ -5,8 +5,12 @@ const html = document.getElementById("html");
 const body = document.getElementById("body");
 
 hamMenu.addEventListener("click", () => {
+    closeSideBar()
+})
+
+function closeSideBar(){
     hamMenu.classList.toggle("active");
     offScreenMenu.classList.toggle("active");
     html.classList.toggle("active");
     body.classList.toggle("active");
-})
+}
